@@ -1,4 +1,5 @@
 import CustomCursor from "@/components/CustomCursor";
+import SmoothScroll from "@/components/SmoothScroll";
 import Navbar from "@/components/Navbar";
 import ScrollSequence from "@/components/ScrollSequence";
 import SectionAddress from "@/components/SectionAddress";
@@ -12,6 +13,7 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <>
+      <SmoothScroll />
       <CustomCursor />
       <Navbar />
       <main>

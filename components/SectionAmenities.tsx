@@ -60,8 +60,18 @@ export default function SectionAmenities() {
           </Reveal>
 
           <Reveal className="amenities__collage" delay={0.12}>
-            <img src={`${BASE}/amenities1.jpg`} alt="Rooftop infinity pool" />
-            <img src={`${BASE}/amenities3.jpg`} alt="Rooftop sky deck" />
+            <img
+              src={`${BASE}/amenities1.jpg`}
+              alt="Rooftop infinity pool"
+              loading="lazy"
+              decoding="async"
+            />
+            <img
+              src={`${BASE}/amenities3.jpg`}
+              alt="Rooftop sky deck"
+              loading="lazy"
+              decoding="async"
+            />
           </Reveal>
         </div>
 
@@ -73,7 +83,7 @@ export default function SectionAmenities() {
               delay={(i % 2) * 0.08}
             >
               <div className="amenity-tile__media">
-                <img src={a.img} alt={a.name} />
+                <img src={a.img} alt={a.name} loading="lazy" decoding="async" />
               </div>
               <div className="amenity-tile__caption">
                 <span className="amenity-tile__index">

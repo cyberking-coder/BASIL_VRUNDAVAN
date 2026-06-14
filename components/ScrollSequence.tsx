@@ -131,7 +131,7 @@ export default function ScrollSequence() {
         trigger: sectionRef.current,
         start: "top top",
         end: "bottom bottom",
-        scrub: 2,
+        scrub: 1.2,
         onUpdate: (self) => {
           const p = self.progress;
           const idx = Math.round(p * (frameCount - 1));

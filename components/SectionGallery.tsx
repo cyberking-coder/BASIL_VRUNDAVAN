@@ -33,7 +33,7 @@ export default function SectionGallery() {
               className="gallery__item"
               delay={(i % 2) * 0.08}
             >
-              <img src={s.img} alt={s.cap} />
+              <img src={s.img} alt={s.cap} loading="lazy" decoding="async" />
               <span className="gallery__cap">{s.cap}</span>
             </Reveal>
           ))}
