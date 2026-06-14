@@ -59,13 +59,15 @@ export default function ScrollSequence() {
     let currentIndex = -1;
     let allLoaded = false;
 
-    // ---- Canvas sizing (DPR-aware, cover) ----
+    // ---- Canvas sizing (DPR-aware, sized to its own box) ----
     const resize = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = Math.floor(window.innerWidth * dpr);
-      canvas.height = Math.floor(window.innerHeight * dpr);
-      canvas.style.width = window.innerWidth + "px";
-      canvas.style.height = window.innerHeight + "px";
+      // Use the canvas's rendered box (fills the sticky's dvh height) rather
+      // than window.innerHeight, so the mobile URL bar can't crop the frame.
+      const w = canvas.clientWidth || window.innerWidth;
+      const h = canvas.clientHeight || window.innerHeight;
+      canvas.width = Math.floor(w * dpr);
+      canvas.height = Math.floor(h * dpr);
     };
 
     const drawFrame = (index: number, force = false) => {
@@ -120,8 +122,12 @@ export default function ScrollSequence() {
     const onResize = () => {
       resize();
       drawFrame(currentIndex < 0 ? 0 : currentIndex, true);
+      ScrollTrigger.refresh();
     };
     window.addEventListener("resize", onResize);
+    // The mobile address bar show/hide fires visualViewport resize (not always
+    // a window resize), so keep the canvas + scroll metrics in sync with it.
+    window.visualViewport?.addEventListener("resize", onResize);
 
     const initGsap = () => {
       gsap.registerPlugin(ScrollTrigger);
@@ -175,6 +181,7 @@ export default function ScrollSequence() {
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", onResize);
+      window.visualViewport?.removeEventListener("resize", onResize);
       if (trigger) trigger.kill();
     };
   }, []);
