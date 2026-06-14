@@ -712,47 +712,120 @@ html {
   margin-top: 12px;
 }
 
-/* ---------- SECTION B — Amenities ---------- */
+/* ---------- SECTION B — Amenities (editorial, dark) ---------- */
 .amenities {
-  background: var(--surface);
+  background: #100e0b;
 }
-.amenities__grid {
+.amenities .tag-eyebrow {
+  color: var(--clay);
+}
+.amenities__intro {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 72px;
+  align-items: center;
+}
+.amenities__intro h2 {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-weight: 300;
+  line-height: 1.04;
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+  margin-top: 26px;
+}
+.amenities__intro p {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.95;
+  color: var(--text-muted);
+  margin-top: 28px;
+  max-width: 440px;
+}
+.amenities__collage {
+  position: relative;
+  min-height: 480px;
+}
+.amenities__collage img {
+  position: absolute;
+  object-fit: cover;
+  border: 1px solid rgba(242, 237, 228, 0.08);
+  box-shadow: 0 40px 90px -40px rgba(0, 0, 0, 0.85);
+}
+.amenities__collage img:first-child {
+  width: 68%;
+  height: 72%;
+  top: 0;
+  right: 0;
+}
+.amenities__collage img:last-child {
+  width: 56%;
+  height: 60%;
+  bottom: 0;
+  left: 0;
+}
+.amenities__gallery {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  margin-top: 80px;
-  background: var(--line);
-  border: 1px solid var(--line);
+  gap: 20px;
+  margin-top: 110px;
 }
-.amenity-card {
-  background: var(--cream);
-  padding: 52px 44px;
-  transition: background 0.45s var(--ease), transform 0.45s var(--ease);
+.amenity-tile {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  border: 1px solid rgba(242, 237, 228, 0.08);
 }
-.amenity-card:hover {
-  background: var(--surface-2);
+.amenity-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s var(--ease);
 }
-.amenity-card svg {
-  width: 34px;
-  height: 34px;
-  stroke: var(--clay);
-  stroke-width: 1.4;
-  fill: none;
+.amenity-tile:hover img {
+  transform: scale(1.06);
 }
-.amenity-card h3 {
+.amenity-tile__shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(8, 7, 5, 0.88) 0%,
+    rgba(8, 7, 5, 0.1) 48%,
+    rgba(8, 7, 5, 0.28) 100%
+  );
+}
+.amenity-tile__word {
+  position: absolute;
+  top: 22px;
+  right: 24px;
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(242, 237, 228, 0.92);
+  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.6);
+}
+.amenity-tile__body {
+  position: absolute;
+  left: 26px;
+  right: 26px;
+  bottom: 26px;
+}
+.amenity-tile__name {
   font-family: var(--font-body);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--ink);
-  margin-top: 32px;
+  color: var(--text-primary);
 }
-.amenity-card p {
+.amenity-tile__desc {
   font-family: var(--font-body);
-  font-size: 0.85rem;
-  color: var(--muted);
-  line-height: 1.7;
-  margin-top: 12px;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: rgba(242, 237, 228, 0.66);
+  margin-top: 8px;
 }
 
 /* ---------- SECTION C — Residences ---------- */
@@ -1014,8 +1087,15 @@ html {
 
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
-  .amenities__grid {
+  .amenities__gallery {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .amenities__intro {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .amenities__collage {
+    min-height: 420px;
   }
 }
 @media (max-width: 768px) {
@@ -1024,6 +1104,9 @@ html {
   .location__grid {
     grid-template-columns: 1fr;
     gap: 48px;
+  }
+  .amenities__intro h2 {
+    font-size: 3rem;
   }
   .address__left h2 {
     font-size: 3rem;
