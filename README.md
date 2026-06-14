@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# BASIL VRUNDAVAN
 
-## Getting Started
+A luxury apartment scroll-scrub experience for **Basil Vrundavan** — a premium
+2 & 3 BHK residential development in Pune. Built with Next.js 16 (App Router,
+Turbopack, static export), a 192-frame WebP canvas sequence scrubbed by GSAP
+ScrollTrigger, and Framer Motion section reveals.
 
-First, run the development server:
+## Tech
+
+- **Next.js 16** — App Router, `output: "export"` (fully static)
+- **GSAP ScrollTrigger** — scroll-scrubbed 192-frame cinematic sequence
+- **Framer Motion** — fade-up section reveals
+- **next/font/google** — self-hosted Cormorant Garamond + DM Sans
+
+## Local development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000/basil-vrundavan](http://localhost:3000/basil-vrundavan).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+> The app is served under the `basePath` `/basil-vrundavan`, so all routes and
+> assets live beneath that prefix.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Build
 
-## Learn More
+```bash
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+Produces a static site in `out/`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment — GitHub Pages
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Deployment is automated via `.github/workflows/deploy.yml`:
 
-## Deploy on Vercel
+1. In the repository, go to **Settings → Pages** and set
+   **Source** to **GitHub Actions**.
+2. Push to `main`. The workflow runs `npm ci`, `npm run build`, then uploads and
+   deploys the `out/` artifact.
+3. The site goes live at
+   **https://cyberking-coder.github.io/basil-vrundavan**.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The `basePath` in `next.config.ts` (`/basil-vrundavan`) ensures every asset
+resolves correctly under the GitHub Pages project path. The frame sequence lives
+in `public/sequence/` and is referenced at runtime as
+`/basil-vrundavan/sequence/frame_0001.webp … frame_0192.webp`.
