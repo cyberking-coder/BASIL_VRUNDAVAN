@@ -12,13 +12,26 @@ const LINKS = [
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [pastHero, setPastHero] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 80);
+    const hero = document.querySelector(".sequence");
+    const onScroll = () => {
+      setScrolled(window.scrollY > 80);
+      // Flip the navbar to its light theme once we've scrolled past the
+      // dark hero sequence and into the cream sections.
+      if (hero) {
+        setPastHero(hero.getBoundingClientRect().bottom <= 90);
+      }
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, []);
 
   // Lock body scroll while the mobile overlay is open
@@ -29,8 +42,12 @@ export default function Navbar() {
     };
   }, [menuOpen]);
 
+  const cls = `navbar${scrolled ? " scrolled" : ""}${
+    pastHero ? " light" : ""
+  }`;
+
   return (
-    <header className={`navbar${scrolled ? " scrolled" : ""}`}>
+    <header className={cls}>
       <div className="navbar__inner">
         <a href="#top" className="navbar__logo" aria-label="Basil Vrundavan home">
           BASIL VRUNDAVAN
@@ -43,6 +60,10 @@ export default function Navbar() {
             </a>
           ))}
         </nav>
+
+        <a href="#contact" className="navbar__cta">
+          Book a Visit
+        </a>
 
         <button
           type="button"
@@ -66,6 +87,9 @@ export default function Navbar() {
             {l.label}
           </a>
         ))}
+        <a href="#contact" onClick={() => setMenuOpen(false)}>
+          Book a Visit
+        </a>
       </div>
     </header>
   );
