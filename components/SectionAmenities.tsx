@@ -4,10 +4,11 @@ import Reveal from "./Reveal";
 
 const BASE = "/BASIL_VRUNDAVAN";
 
-// NOTE: Imagery below uses existing hero sequence frames as PLACEHOLDERS so the
-// layout is complete and previewable. To use the real amenity renders, drop the
-// files into `public/amenities/` and replace the `img` paths (e.g.
-// `${BASE}/amenities/pool.webp`). Nothing else needs to change.
+// Imagery uses existing hero sequence frames as PLACEHOLDERS so the layout is
+// complete and previewable. To use the real amenity renders: drop the files
+// into `public/amenities/` and change each tile's `img` to the commented path.
+// Suggested filenames: pool.webp, lounge.webp, play.webp, gardens.webp,
+// automation.webp, arrival.webp (+ collage-1.webp, collage-2.webp).
 const frame = (n: number) =>
   `${BASE}/sequence/frame_${String(n).padStart(4, "0")}.webp`;
 
@@ -18,37 +19,37 @@ const AMENITIES: Amenity[] = [
     word: "Splashing",
     name: "Infinity Pool",
     desc: "Sky-level waters with panoramic city views",
-    img: frame(58),
+    img: frame(66), // → `${BASE}/amenities/pool.webp`
   },
   {
     word: "Retreat",
     name: "Sky Lounge",
     desc: "A rooftop entertainment sanctuary",
-    img: frame(176),
+    img: frame(178), // → `${BASE}/amenities/lounge.webp`
   },
   {
     word: "Frolic",
     name: "Children's Play",
     desc: "Joyful, safe spaces for little ones",
-    img: frame(40),
+    img: frame(60), // → `${BASE}/amenities/play.webp`
   },
   {
     word: "Paradise",
     name: "Landscaped Gardens",
     desc: "Acres of curated green retreats",
-    img: frame(72),
+    img: frame(80), // → `${BASE}/amenities/gardens.webp`
   },
   {
     word: "Effortless",
     name: "Home Automation",
     desc: "Smart living, quietly orchestrated",
-    img: frame(150),
+    img: frame(158), // → `${BASE}/amenities/automation.webp`
   },
   {
     word: "Arrival",
     name: "Valet Parking",
     desc: "A seamless welcome, every time",
-    img: frame(16),
+    img: frame(14), // → `${BASE}/amenities/arrival.webp`
   },
 ];
 
