@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const BASE_PATH = "/basil-vrundavan";
+const BASE_PATH = "/BASIL_VRUNDAVAN";
 const TOTAL_SOURCE_FRAMES = 192;
 
 /** Linear fade helper. Returns 0..1 opacity for a value `p` given a fade-in

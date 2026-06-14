@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: "export",
-  basePath: "/basil-vrundavan",
+  basePath: "/BASIL_VRUNDAVAN",
   images: { unoptimized: true },
 };
 

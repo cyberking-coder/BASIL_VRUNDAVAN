@@ -19,9 +19,9 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000/basil-vrundavan](http://localhost:3000/basil-vrundavan).
+Open [http://localhost:3000/BASIL_VRUNDAVAN](http://localhost:3000/BASIL_VRUNDAVAN).
 
-> The app is served under the `basePath` `/basil-vrundavan`, so all routes and
+> The app is served under the `basePath` `/BASIL_VRUNDAVAN`, so all routes and
 > assets live beneath that prefix.
 
 ## Build
@@ -41,9 +41,9 @@ Deployment is automated via `.github/workflows/deploy.yml`:
 2. Push to `main`. The workflow runs `npm ci`, `npm run build`, then uploads and
    deploys the `out/` artifact.
 3. The site goes live at
-   **https://cyberking-coder.github.io/basil-vrundavan**.
+   **https://cyberking-coder.github.io/BASIL_VRUNDAVAN**.
 
-The `basePath` in `next.config.ts` (`/basil-vrundavan`) ensures every asset
+The `basePath` in `next.config.ts` (`/BASIL_VRUNDAVAN`) ensures every asset
 resolves correctly under the GitHub Pages project path. The frame sequence lives
 in `public/sequence/` and is referenced at runtime as
-`/basil-vrundavan/sequence/frame_0001.webp … frame_0192.webp`.
+`/BASIL_VRUNDAVAN/sequence/frame_0001.webp … frame_0192.webp`.
