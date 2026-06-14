@@ -1,7 +1,8 @@
 const LINKS = [
   { label: "Overview", href: "#overview" },
-  { label: "Residences", href: "#residences" },
   { label: "Amenities", href: "#amenities" },
+  { label: "Residences", href: "#residences" },
+  { label: "Gallery", href: "#gallery" },
   { label: "Location", href: "#location" },
   { label: "Contact", href: "#contact" },
 ];

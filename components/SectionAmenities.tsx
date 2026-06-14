@@ -4,52 +4,39 @@ import Reveal from "./Reveal";
 
 const BASE = "/BASIL_VRUNDAVAN";
 
-// Imagery uses existing hero sequence frames as PLACEHOLDERS so the layout is
-// complete and previewable. To use the real amenity renders: drop the files
-// into `public/amenities/` and change each tile's `img` to the commented path.
-// Suggested filenames: pool.webp, lounge.webp, play.webp, gardens.webp,
-// automation.webp, arrival.webp (+ collage-1.webp, collage-2.webp).
-const frame = (n: number) =>
-  `${BASE}/sequence/frame_${String(n).padStart(4, "0")}.webp`;
+type Amenity = { name: string; desc: string; img: string };
 
-type Amenity = { word: string; name: string; desc: string; img: string };
-
+// Project renders (already carry their own corner word-labels), shown 2:1.
 const AMENITIES: Amenity[] = [
   {
-    word: "Splashing",
     name: "Infinity Pool",
-    desc: "Sky-level waters with panoramic city views",
-    img: frame(66), // → `${BASE}/amenities/pool.webp`
+    desc: "Sky-level waters with panoramic city views.",
+    img: `${BASE}/amenities1.jpg`,
   },
   {
-    word: "Retreat",
-    name: "Sky Lounge",
-    desc: "A rooftop entertainment sanctuary",
-    img: frame(178), // → `${BASE}/amenities/lounge.webp`
+    name: "Sky Deck & Lounge",
+    desc: "Rooftop celebrations beneath open skies.",
+    img: `${BASE}/amenities3.jpg`,
   },
   {
-    word: "Frolic",
-    name: "Children's Play",
-    desc: "Joyful, safe spaces for little ones",
-    img: frame(60), // → `${BASE}/amenities/play.webp`
+    name: "Children's Play Zone",
+    desc: "Joyful, safe spaces for little ones to roam.",
+    img: `${BASE}/amenities5.jpg`,
   },
   {
-    word: "Paradise",
     name: "Landscaped Gardens",
-    desc: "Acres of curated green retreats",
-    img: frame(80), // → `${BASE}/amenities/gardens.webp`
+    desc: "A curated green labyrinth and seating courts.",
+    img: `${BASE}/amenities7.jpg`,
   },
   {
-    word: "Effortless",
-    name: "Home Automation",
-    desc: "Smart living, quietly orchestrated",
-    img: frame(158), // → `${BASE}/amenities/automation.webp`
+    name: "Fitness Centre",
+    desc: "A skyline gymnasium to energise every day.",
+    img: `${BASE}/amenities8.jpg`,
   },
   {
-    word: "Arrival",
-    name: "Valet Parking",
-    desc: "A seamless welcome, every time",
-    img: frame(14), // → `${BASE}/amenities/arrival.webp`
+    name: "Grand Entrance",
+    desc: "A seamless, valeted arrival experience.",
+    img: `${BASE}/am1.png`,
   },
 ];
 
@@ -73,8 +60,8 @@ export default function SectionAmenities() {
           </Reveal>
 
           <Reveal className="amenities__collage" delay={0.12}>
-            <img src={frame(184)} alt="" aria-hidden="true" />
-            <img src={frame(96)} alt="" aria-hidden="true" />
+            <img src={`${BASE}/amenities1.jpg`} alt="Rooftop infinity pool" />
+            <img src={`${BASE}/amenities3.jpg`} alt="Rooftop sky deck" />
           </Reveal>
         </div>
 
@@ -83,15 +70,18 @@ export default function SectionAmenities() {
             <Reveal
               key={a.name}
               className="amenity-tile"
-              delay={(i % 3) * 0.08}
+              delay={(i % 2) * 0.08}
             >
-              <img src={a.img} alt={a.name} />
-              <span className="amenity-tile__shade" />
-              <span className="amenity-tile__word">{a.word}.</span>
-              <div className="amenity-tile__body">
-                <div className="amenity-tile__name">{a.name}</div>
-                <div className="amenity-tile__desc">{a.desc}</div>
+              <div className="amenity-tile__media">
+                <img src={a.img} alt={a.name} />
               </div>
+              <div className="amenity-tile__caption">
+                <span className="amenity-tile__index">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="amenity-tile__name">{a.name}</span>
+              </div>
+              <p className="amenity-tile__desc">{a.desc}</p>
             </Reveal>
           ))}
         </div>
